@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="springboot.project.dao.PetcareDao">
+
+	<select id="PetList" parameterType="map"
+		resultType="springboot.project.dto.PetcareDto">
+<![CDATA[
+select * from
+ (select pno, memberid, pkind, pperiod,pccount, pprice, pcontent, pregdate, paddress, pcount, pphone, ptitle, rownum r
+ from (SELECT p2.pno, p2.memberid, pkind, pperiod,count(p.pno) AS pccount, pprice, pcontent, pregdate, paddress, pcount, pphone, ptitle FROM PETCAREBOARD p2 full OUTER JOIN PETCARECOMMENT p  on p.pno = p2.pno 
+ GROUP BY p2.pno, p2.memberid, pkind, pperiod, pprice, pcontent, pregdate, paddress, pcount, pphone, ptitle 
+ ORDER BY pno desc)
+ order by pno desc)E WHERE r >=#{start} AND r <= #{end}
+]]>
+	</select>
+	
+	<update id="pcount" parameterType="int">
+	update petcareboard set pcount = pcount+1 where pno =#{pno}
+	</update>
+	
+	<select id="pranking" resultType="springboot.project.dto.PetcareDto">
+	 SELECT p.pno, ptitle, pimgpath ,pcount ,RANK () over(ORDER BY pcount desc)FROM petcareboard p FULL OUTER JOIN petfile p2 on p.PNO  = p2.PNO FETCH FIRST 5 ROWS ONLY
+	</select>
+
+	<select id="count" resultType="int">
+		select count(*) from petcareboard
+	</select>
+	
+	<select id="petlistone" parameterType="int" resultType="springboot.project.dto.PetcareDto">
+		select * from petcareboard where pno = #{pno}
+	</select>
+
+	<select id="countSearch" resultType="int" parameterType="map">
+		select count(*) from petcareboard
+		<where>
+			<choose>
+				<when test="searchn == 0">ptitle like '%'||#{search}||'%'</when>
+				<when test="searchn == 1">paddress like '%'||#{search}||'%' </when>
+			</choose>
+		</where>
+	</select>
+
+	<select id="petsearch" parameterType="map"
+		resultType="springboot.project.dto.PetcareDto">
+
+		select * from
+ (select pno, memberid, pkind, pperiod,pccount, pprice, pcontent, pregdate, paddress, pcount, pphone, ptitle, rownum r
+ from (SELECT p2.pno, p2.memberid, pkind, pperiod,count(p.pno) AS pccount, pprice, pcontent, pregdate, paddress, pcount, pphone, ptitle FROM PETCAREBOARD p2 full OUTER JOIN PETCARECOMMENT p  on p.pno = p2.pno 
+ GROUP BY p2.pno, p2.memberid, pkind, pperiod, pprice, pcontent, pregdate, paddress, pcount, pphone, ptitle 
+ ORDER BY pno desc)
+		<where>
+			<choose>
+				<when test="searchn == 0">ptitle like '%'||#{search}||'%'</when>
+				<when test="searchn == 1">paddress like '%'||#{search}||'%' </when>
+			</choose>
+		</where>
+		order by pno desc
+		) where r &gt;= #{start} AND r &lt;= #{end}
+	</select>
+
+	<insert id="pinsert"
+		parameterType="springboot.project.dto.PetcareDto">
+		insert into petcareboard(pno, memberid, pkind, pperiod, pprice, pcontent,
+		pregdate, paddress, pphone, ptitle, pcount)
+		values(PETCAREBOARD_SEQ.nextval,#{memberid}, #{pkind}, #{pperiod},
+		#{pprice}, #{pcontent}, sysdate, #{paddress}, #{pphone}, #{ptitle},0)
+	</insert>
+
+	<update id="updatepboard"
+		parameterType="springboot.project.dto.PetcareDto">
+		update petcareboard set pkind=#{pkind}, pperiod=#{pperiod},
+		pprice=#{pprice}, pcontent=#{pcontent},
+		paddress=#{paddress},pphone=#{pphone}, ptitle=#{ptitle}
+		where pno=#{pno}
+	</update>
+
+	<delete id="deletepboard" parameterType="int">
+		delete from petcareboard where pno = #{pno}
+	</delete>
+
+	<insert id="puploadimg"
+		parameterType="springboot.project.dto.PetFileDto">
+		insert into petfile values(petfile_seq.nextval,
+		PETCAREBOARD_SEQ.currval, #{pimgoriname}, #{pimgpath}, #{pimgsize})
+	</insert>
+
+	<select id="pdata" parameterType="int"
+		resultType="springboot.project.dto.PetFileDto">
+		select* from petfile where pno = #{pno}
+	</select>
+	
+	<delete id ="deletepetfile" parameterType="springboot.project.dto.PetFileDto">
+	delete from petfile where pno=#{pno}
+	</delete>
+	
+	<insert id="updatepfile" parameterType="springboot.project.dto.PetFileDto">
+	insert into petfile values(petfile_seq.nextval, #{pno},#{pimgoriname},#{pimgpath}, #{pimgsize} )
+	</insert>
+	
+	
+	
+	
+	
+	
+</mapper>

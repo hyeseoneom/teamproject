@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="springboot.project.dao.FsboardDao">
+	<select id="fsList" parameterType="map" resultType="springboot.project.dto.FsboardDto">
+	<![CDATA[
+		select * from (select fsno,memberid,storename, fscontent,fstitle,regdate,fsreadcount,fsmeeting,fstel,fsarea,fspeople,fsprice,fsfood,fsdate, rownum r
+		from (select * from fsboard order by regdate desc) 
+		order by regdate desc) where r >= #{start} AND r <= #{end}
+	]]>
+	</select>
+ 
+	<select id="fscount" resultType="int">
+		select count(*) from fsboard
+	</select>
+	
+	
+	<insert id="FsboardWrite" parameterType="springboot.project.dto.FsboardDto">
+		insert into fsboard (memberid, storename, fscontent, fsno, regdate, fstitle, fsreadcount,fsmeeting, fsdate, fsarea,fspeople, fstel, fsprice, fsfood) values(#{memberid}, #{storename}, #{fscontent}, fsboard_seq.nextval, sysdate, #{fstitle},  0, #{fsmeeting},#{fsdate} ,#{fsarea} ,#{fspeople}, #{fstel}, #{fsprice}, #{fsfood} )
+	</insert>
+	
+	<select id="fsdetail" parameterType="int" resultType="springboot.project.dto.FsboardDto">
+		select * from fsboard where fsno = #{fsno}
+	</select>
+	
+	<update id="countingFs" parameterType="int">
+		update fsboard set fsreadcount = fsreadcount+1 where fsno= #{fsno}
+	</update>
+	
+	
+	<select id="fscommlist" parameterType="int" resultType="springboot.project.dto.FscommDto">
+		select * from fscomment where fsno = #{fsno} and refscno = 0 order by fsdate asc
+	</select>
+	
+	<select id="recommlist" parameterType="int" resultType="springboot.project.dto.FscommDto">
+		select * from fscomment where fsno = #{fsno} and refscno != 0 order by fsdate asc
+	</select>
+	
+	<delete id="fscommdelete" parameterType="int">
+		delete from fscomment where fscno = #{fscno}
+	</delete>
+	
+	<insert id="fscommWrite" parameterType="springboot.project.dto.FscommDto">
+		insert into fscomment values(fscomment_seq.nextval, #{memberid}, #{fsccontent}, sysdate, #{fsno}, #{refscno})
+	</insert>
+	
+	<select id="commentOne" parameterType="int" resultType="springboot.project.dto.FscommDto">
+		select * from fscomment where fscno = #{fscno}
+	</select>
+	
+	<update id="fscommupdate" parameterType="map">
+		update fscomment set fsccontent=#{fsccontent} where fscno = #{fscno}
+	</update>
+	
+	<update id="quitFsboard" parameterType="int">
+		update fsboard set fsstate = 1 where fsno = #{fsno}
+	</update>
+	
+	<delete id="deleteFsboard" parameterType="int">
+		delete from fsboard where fsno = #{fsno}
+	</delete>
+	
+	<update id="updateFsboard" parameterType="springboot.project.dto.FsboardDto">
+		update fsboard set fstitle=#{fstitle} , fscontent=#{fscontent}, storename = #{storename},fsmeeting=#{fsmeeting},fstel=#{fstel},fsarea=#{fsarea},fspeople=#{fspeople},fsprice=#{fsprice}, fsfood=#{fsfood}, fsdate=#{fsdate} where fsno = #{fsno}
+	</update>
+	
+	<select id="countSearch" resultType="int" parameterType="map">
+			select count(*) from fsboard
+			<where>
+				<choose>
+					<when test="searchn == 0"> fstitle  like '%'||#{search}||'%' </when>
+					<when test="searchn == 1"> fscontent  like '%'||#{search}||'%'</when>
+					<when test="searchn == 2"> memberid  like '%'||#{search}||'%' </when>
+					<when test="searchn == 3"> storename  like '%'||#{search}||'%' </when>
+				</choose>
+			</where> 
+	</select>
+	
+	<select id="fsSearch" parameterType="map" resultType="springboot.project.dto.FsboardDto">
+			select * from (select fsno,memberid,storename, fscontent,fstitle,regdate,fsreadcount,fsmeeting,fstel,fsarea,fspeople,fsprice,fsfood,fsdate, rownum r from (select * from fsboard order by regdate desc) 
+		<where>
+			<choose>
+					<when test="searchn == 0"> fstitle  like '%'||#{search}||'%' </when>
+					<when test="searchn == 1"> fscontent  like '%'||#{search}||'%'</when>
+					<when test="searchn == 2"> memberid  like '%'||#{search}||'%' </when>
+					<when test="searchn == 3"> storename  like '%'||#{search}||'%' </when>
+			</choose>
+		</where> 
+		order by regdate desc) where r &gt;= #{start} AND r &lt;= #{end}
+	</select>
+	
+	<!--  주문 -->
+	
+	<select id="ordercount" parameterType="int" resultType="int">
+		select count(*) from fsorder where fsno = #{fsno}
+	</select>
+	
+	<select id="orderList" parameterType="int" resultType="springboot.project.dto.FsorderDto">
+		select * from fsorder where fsno = #{fsno}
+	</select>
+	
+	<insert id="insertorder" parameterType="springboot.project.dto.FsorderDto">
+		insert into fsorder values(fsorder_seq.nextval, #{fsno}, #{memberid}, #{food}, #{tel}, sysdate)
+	</insert>
+	
+	<select id="ordersearch" parameterType="map" resultType="int">
+		select count(*) from fsorder where fsno = #{fsno} and memberid = #{memberid}
+	</select>
+	
+	<delete id="deleteorder" parameterType="map">
+		delete from fsorder where fsno = #{fsno} and memberid = #{memberid}
+	</delete>
+	
+	<select id="fsareaList" parameterType="map" resultType="springboot.project.dto.FsboardDto">
+		<![CDATA[
+		select * from
+		(select fsno,memberid,storename, fscontent,fstitle,regdate,fsreadcount,fsmeeting,fstel,fsarea,fspeople,fsprice,fsfood,fsdate, rownum r 
+		from (select * from fsboard where fsarea=#{fsarea} order by regdate desc) 
+		order by regdate desc) where r >= #{start} AND r <= #{end}
+ 		]]>
+	</select>
+	
+	<select id="countFsarea"  parameterType="String" resultType="int">
+		select count(*) from fsboard where fsarea=#{fsarea}
+	</select>
+	
+	<select id="fsareaListSearch" parameterType="map" resultType="springboot.project.dto.FsboardDto">
+		
+		select * from
+		(select fsno,memberid,storename, fscontent,fstitle,regdate,fsreadcount,fsmeeting,fstel,fsarea,fspeople,fsprice,fsfood,fsdate, rownum r 
+		from  (select * from fsboard where fsarea=#{fsarea} order by regdate desc) 
+		<where>
+			<choose>
+				<when test="searchn == 0"> fstitle  like '%'||#{search}||'%' </when>
+				<when test="searchn == 1"> fscontent  like '%'||#{search}||'%'</when>
+				<when test="searchn == 2"> memberid  like '%'||#{search}||'%' </when>
+				<when test="searchn == 3"> storename  like '%'||#{search}||'%' </when>
+			</choose>
+		</where> 
+		order by regdate desc) where r &gt;= #{start} AND r &lt;= #{end}	
+	</select>
+	
+	<select id="fsareaCountSearch" resultType="int" parameterType="map">
+		select count(*) from fsboard   
+		<where>
+			fsarea=#{fsarea} and
+			<choose>
+				<when test="searchn == 0"> fstitle  like '%'||#{search}||'%' </when>
+				<when test="searchn == 1"> fscontent  like '%'||#{search}||'%'</when>
+				<when test="searchn == 2"> memberid  like '%'||#{search}||'%' </when>
+				<when test="searchn == 3"> storename  like '%'||#{search}||'%' </when>
+			</choose>
+		</where> 
+	</select>
+    
+    <select id="ranking" resultType="String">
+        select fsfood from (select fsfood, count(fsfood), row_number() over(order by count(fsfood) desc) as r 
+        from fsboard group by fsfood order by r)where r&lt;=3
+    </select>
+</mapper>

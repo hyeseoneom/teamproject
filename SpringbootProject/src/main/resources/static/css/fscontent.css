@@ -1,0 +1,610 @@
+
+
+ul{
+	margin: 0 40px;
+	list-style : none;
+	font-size : 1.25rem;
+}
+
+.send {
+	color: white;
+	background-color: black;
+	border-color: black;
+	margin-left:75.5%
+	
+
+}
+
+.send:hover {
+	color: black;
+	background-color:white;
+	border-color: black;
+}
+
+.u-section-0 .u-btn-6{
+  border-style: solid;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0px;
+  margin: -50px 0px 0px 0;
+}
+
+.u-section-1 .u-sheet-1 {
+  min-height: 735px;
+}
+
+.u-section-1 .u-group-1 {
+  min-height: 670px;
+  width: 800px;
+  margin: 0 auto 60px;
+}
+
+.u-section-1 .u-container-layout-1 {
+  padding: 20px 0;
+}
+
+.u-section-1 .u-text-1 {
+  font-size: 1.5rem;
+  margin: 0 0px 0 60px;
+}
+
+.u-section-1 .u-btn-7 {
+  border-style: solid;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: 1px;
+  margin: 0px 40px 0 0px;
+  padding: 6px 23px;
+  pointer-events: none;
+  cursor: default;
+}
+
+.u-section-1 .u-btn-2 {
+  border-style: solid;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: 1px;
+  margin: -40px 0px 0 150px;
+  padding: 6px 23px;
+}
+
+.u-section-1 .u-text-2 {
+  margin: 40px 0 0 60px;
+}
+
+.u-section-1 .u-text-3 {
+  margin: -25px auto 0 235px;
+}
+
+.u-section-1 .u-text-4 {
+  margin: 0 40px 0 60px;
+}
+
+.u-section-1 .u-text-5 {
+  margin: -25px auto 0 59px;
+}
+
+.u-section-1 .u-line-1 {
+  transform-origin: right center 0px;
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+
+.u-section-1 .u-text-6 {
+  margin: 8px auto 0 59px;
+}
+
+.u-section-1 .u-line-2 {
+  transform-origin: left center 0px;
+  margin: 223px 59px 0;
+}
+
+.u-section-1 .u-text-7 {
+  font-size: 1.5rem;
+  margin: 0 0 0 0;
+}
+
+.u-section-1 .u-text-8 {
+  margin: -1px auto 0 59px;
+}
+
+.u-section-1 .u-text-9 {
+  font-size: 1.5rem;
+  margin: -75px 20px 0 auto;
+}
+
+.u-section-1 .u-text-10 {
+  font-size: 1.5rem;
+  margin: 0 0 0 0;
+}
+
+.u-section-1 .u-text-11 {
+  margin: 0 260px 0 auto;
+}
+
+.u-section-1 .u-text-12 {
+  margin: 0 0 0 475px;
+}
+
+.u-section-1 .u-line-3 {
+  transform-origin: right center 0px;
+  margin-top: 12px;
+  margin-bottom: 0;
+}
+
+.u-section-1 .u-text-13 {
+  font-size: 1.5rem;
+  margin: -73px 0 0 60px;
+}
+
+.u-section-1 .u-text-14 {
+  font-size: 1.5rem;
+  margin: 0 312px 0 auto;
+  width : 500px
+}
+
+.u-section-1 .u-text-15 {
+  margin: 0 auto 0 0px;
+}
+
+.u-section-1 .u-text-16 {
+  margin: 0px 0px 0 0px;
+}
+
+@media (max-width: 1199px) {
+  .u-section-1 .u-line-1 {
+    transform-origin: left center 0px;
+  }
+
+  .u-section-1 .u-line-2 {
+    margin-right: initial;
+    margin-left: initial;
+  }
+}
+
+@media (max-width: 991px) {
+  .u-section-1 .u-group-1 {
+    width: 720px;
+  }
+
+  .u-section-1 .u-text-1 {
+    margin-right: 232px;
+    margin-left: 19px;
+  }
+
+  .u-section-1 .u-btn-1 {
+    margin-right: 0;
+  }
+
+  .u-section-1 .u-text-4 {
+    margin-right: 361px;
+  }
+
+  .u-section-1 .u-text-9 {
+    margin-right: 245px;
+  }
+
+  .u-section-1 .u-text-11 {
+    margin-right: 234px;
+  }
+
+  .u-section-1 .u-text-14 {
+    margin-right: 281px;
+  }
+}
+
+@media (max-width: 767px) {
+  .u-section-1 .u-group-1 {
+    width: 540px;
+  }
+
+  .u-section-1 .u-text-1 {
+    margin-right: 71px;
+    margin-left: 0;
+  }
+
+  .u-section-1 .u-text-3 {
+    margin-left: 176px;
+  }
+
+  .u-section-1 .u-text-4 {
+    margin-right: 271px;
+  }
+
+  .u-section-1 .u-text-9 {
+    margin-right: 184px;
+  }
+
+  .u-section-1 .u-text-11 {
+    margin-right: 176px;
+  }
+
+  .u-section-1 .u-text-14 {
+    margin-right: 211px;
+  }
+
+  .u-section-1 .u-text-16 {
+    margin-right: 145px;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-1 .u-group-1 {
+    width: 340px;
+  }
+
+  .u-section-1 .u-text-1 {
+    margin-right: 0;
+  }
+
+  .u-section-1 .u-text-3 {
+    margin-left: 111px;
+  }
+
+  .u-section-1 .u-text-4 {
+    margin-right: 171px;
+  }
+
+  .u-section-1 .u-text-9 {
+    margin-right: 116px;
+  }
+
+  .u-section-1 .u-text-11 {
+    margin-right: 111px;
+  }
+
+  .u-section-1 .u-text-14 {
+    margin-right: 133px;
+  }
+
+  .u-section-1 .u-text-16 {
+    margin-right: 91px;
+  }
+}.u-section-2 .u-sheet-1 {
+  min-height: 207px;
+}.u-section-3 .u-sheet-1 {
+  min-height: 811px;
+}
+
+.u-section-3 .u-group-1 {
+  min-height: 643px;
+  width: 800px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.u-section-2 .u-container-layout-1 {
+  padding: 20px 0;
+}
+
+.u-section-3 .u-text-1 {
+  font-size: 1.5rem;
+  margin: 0 auto 0 59px;
+}
+
+.u-section-3 .u-text-2 {
+  margin: 0 auto 0 59px;
+}
+
+.u-section-2 .u-btn-1 {
+  border-style: solid;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: 1px;
+  margin: 20px auto 0 59px;
+  padding: 6px 23px;
+}
+
+.u-section-2 .u-btn-2 {
+  border-style: solid;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: 1px;
+  margin: -38px auto 0 147px;
+  padding: 6px 23px;
+}
+
+.u-section-2 .u-line-1 {
+  transform-origin: left center 0px;
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+
+.u-section-2 .u-btn-3 {
+  border-style: solid;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0px;
+  margin: -50px 0px 0 0;
+}
+
+.u-section-2 .u-btn-4 {
+  border-style: solid;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0px;
+  margin: -50px 0 0px 0;
+}
+
+.u-section-2 .u-btn-5 {
+  border-style: solid;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0px;
+  margin: -50px 0px 0px 0;
+}
+
+@media (max-width: 1199px) {
+  .u-section-3 .u-group-1 {
+    height: auto;
+  }
+
+  .u-section-3 .u-btn-3 {
+    margin-right: 104px;
+  }
+
+  .u-section-3 .u-btn-4 {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 991px) {
+  .u-section-3 .u-group-1 {
+    width: 720px;
+  }
+
+  .u-section-3 .u-btn-2 {
+    margin-left: 67px;
+  }
+
+  .u-section-3 .u-btn-3 {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .u-section-3 .u-group-1 {
+    width: 540px;
+  }
+
+  .u-section-3 .u-btn-2 {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-3 .u-group-1 {
+    width: 340px;
+  }
+}
+
+.u-section-3 .u-sheet-1 {
+    min-height: 100px;
+    margin-top: -1%;
+}
+
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button
+    {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.comment-box {
+    padding: 5px
+}
+
+.comment-area textarea {
+    border: 1px solid black;
+    width: 60%;
+    margin-left: 20%;
+    font-family: 'Gamja Flower', cursive;
+}
+
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #ffffff;
+    outline: 0;
+    box-shadow: 0 0 0 1px rgb(255, 0, 0) !important;
+}
+
+.send {
+	color: white;
+	background-color: black;
+	border-color: black;
+	margin-left:75.5%
+	
+
+}
+
+.send:hover {
+	color: black;
+	background-color:white;
+	border-color: black;
+}
+
+.rating {
+    display: inline-flex;
+    margin-top: -2%;
+    margin-left: 15%;
+    flex-direction: row-reverse
+}
+
+.rating>input {
+    display: none
+}
+
+.rating>label {
+    position: relative;
+    width: 28px;
+    font-size: 35px;
+    color: #ff0000;
+    cursor: pointer
+}
+
+.rating>label::before {
+    content: "\2605";
+    position: absolute;
+    opacity: 0
+}
+
+.rating>label:hover:before, .rating>label:hover ~label:before {
+    opacity: 1 !important
+}
+
+.rating>input:checked ~label:before {
+    opacity: 1
+}
+
+.rating:hover>input:checked ~label:before {
+    opacity: 0.4
+}
+/*占쎈솊疫뀐옙 筌뤴뫖以�*/
+body {
+    font-family: "Lato";
+}
+
+.comments-section {
+    margin: 1% auto 2% auto;
+    width: 50%;
+}
+
+.comments-section .comments {
+    color: black;
+}
+
+.comments-section .comment {
+    background: #F9FBFC;
+    padding: 20px;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.comments-section .comment blockquote {
+    color: #eee;
+    padding: 1em;
+    border-left: 2px solid #76daff;
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.comments-section .comment code {
+    font-family: Menlo, Monaco, monospace;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 2px 5px;
+    margin: 0 2px;
+    border-radius: 2px;
+}
+
+.comments-section .comment .box {
+    background: #1d1f20;
+    padding: 20px;
+}
+
+.comments-section .comment .box pre {
+    overflow: auto;
+    margin: 0;
+}
+
+.comments-section .comment .box pre code {
+    background: transparent;
+}
+
+.comments-section .comment .box+.box {
+    padding-top: 0px;
+}
+
+.comments-section .comment a {
+    color: #76daff;
+    text-decoration: none;
+}
+
+.comments-section .comment .comment-user {
+    border-bottom: 1px solid #555;
+    padding: 10px 45px 20px;
+    display: flex;
+    align-items: center;
+}
+
+.comments-section .comment .avatar img {
+    width: 35px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.comment-user {
+    height: 10px;
+}
+
+.comments-section .comment .comment-user .username {
+    color: #76daff;
+}
+
+.comments-section .comment .comment-user .user-details {
+    color: #666;
+    margin-left:-2%;
+}
+
+.comments-section .comment .comment-user .user-details span:last-child {
+    color: #999;
+    font-size: 80%;
+    
+}
+
+.comments-section .comment #comment-text {
+    padding: 10px 45px 20px;
+}
+/* comment甕곌쑵�뱣 */
+.ubtn {
+    float: right;
+    margin-right: 1%;
+    border: solid grey 0.5px;
+    background-color: white;
+    height: 30px;
+    border-radius: 10px;
+}
+
+.ubtn:hover {
+    border: solid red 0.5px;
+    background-color: white;
+    color: red;
+}
+
+.dbtn {
+    float: right;
+    margin-right: 1%;
+    border: solid grey 0.5px;
+    background-color: white;
+    height: 30px;
+    border-radius: 10px;
+}
+
+.dbtn:hover {
+    border: solid red 0.5px;
+    background-color: white;
+    color: red;
+}
+
+.recomment{
+	float: right;
+    margin-right: 1%;
+    border: solid grey 0.5px;
+    background-color: white;
+    height: 30px;
+    border-radius: 10px;
+}
+
+.recommet{
+	border: solid red 0.5px;
+    background-color: white;
+    color: red;
+}
+
+/* 占쎈솊疫뀐옙占쎈퓠癰귢쑴�젎 占쎄돌占쎌궎占쎈뮉椰꾬옙 */
+#scorecomment {
+    margin-left: 3%;
+    color: #FCDE00;
+}

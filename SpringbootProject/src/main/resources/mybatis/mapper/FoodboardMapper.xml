@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="springboot.project.dao.FoodboardDao">
+
+	<select id="FoodList" parameterType="map"
+		resultType="springboot.project.dto.FoodListDto">
+<![CDATA[
+select * from
+ (select STOREID , STORENAME ,STOREADDRESS, STOREPRICE,fcount, favg, foodregdate, storefilename, storefilepath, storefilesize, rownum as R
+ from (SELECT f2.STOREID ,foodregdate,count(f.storeid)AS fcount, f2.STORENAME , f2.STOREADDRESS, f2.STOREPRICE,storefilename, storefilepath, storefilesize, ROUND(avg(nvl(FCSCORE,0))) 
+ AS favg  FROM FOODSTORE f2 full OUTER JOIN FOODCOMMENT f  on f.STOREID =f2.STOREID 
+ GROUP BY f2.STOREID ,foodregdate, f2.storename, f2.STOREADDRESS, f2.STOREPRICE ,storefilename, storefilepath, storefilesize ORDER BY foodregdate)
+ order by foodregdate desc)E where E.R >=#{start} AND E.R <= #{end}
+ ]]>
+	</select>
+
+	<select id="count" resultType="int">
+		select count(*) from foodstore
+	</select>
+
+
+	<select id="foodlistone" parameterType="int"
+		resultType="springboot.project.dto.FoodboardDto">
+		select * from foodstore where storeid = #{storeid}
+	</select>
+
+	<select id="countSearch" resultType="int" parameterType="map">
+		select count(*) from foodstore
+		<where>
+			<choose>
+				<when test="searchn == 0">storename like '%'||#{search}||'%'</when>
+				<when test="searchn == 1">storeaddress like '%'||#{search}||'%' </when>
+			</choose>
+		</where>
+	</select>
+
+	<select id="foodstoresearch" parameterType="map"
+		resultType="springboot.project.dto.FoodboardDto">
+
+		select * from
+		(select STOREID , STORENAME,fcount ,STOREADDRESS, STOREPRICE, favg, foodregdate, rownum
+		r
+		from (SELECT f2.STOREID ,count(f.storeid)AS fcount,foodregdate, f2.STORENAME , f2.STOREADDRESS,
+		f2.STOREPRICE, ROUND(avg(nvl(FCSCORE,0)))
+		AS favg FROM FOODSTORE f2 full OUTER JOIN FOODCOMMENT f on f.STOREID
+		=f2.STOREID
+		GROUP BY f2.STOREID ,foodregdate, f2.storename, f2.STOREADDRESS, f2.STOREPRICE
+		ORDER BY foodregdate)
+		<where>
+			<choose>
+				<when test="searchn == 0">storename like '%'||#{search}||'%'</when>
+				<when test="searchn == 1">storeaddress like '%'||#{search}||'%' </when>
+			</choose>
+		</where>
+		order by storeid desc
+		)E where E.r &gt;= #{start} AND E.r &lt;= #{end}
+
+	</select>
+
+	<select id="franking" parameterType="map" resultType="springboot.project.dto.FoodListDto">
+	<![CDATA[
+SELECT STOREID , STORENAME , STOREPRICE, favg,RANK() over(ORDER BY favg desc), storefilename, storefilepath, storefilesize from
+ (select STOREID , STORENAME, STOREADDRESS,storefilename, storefilepath, storefilesize, STOREPRICE, favg, foodregdate, rownum AS R 
+ from (SELECT f2.STOREID ,foodregdate, f2.STORENAME,storefilename, storefilepath, storefilesize , f2.STOREADDRESS,f2.STOREPRICE, ROUND(avg(nvl(FCSCORE,0))) AS favg  
+ FROM FOODSTORE f2 full OUTER JOIN FOODCOMMENT f  on f.STOREID =f2.STOREID
+ GROUP BY f2.STOREID,storefilename, storefilepath, storefilesize ,foodregdate, f2.storename, f2.STOREADDRESS, f2.STOREPRICE ORDER BY favg desC) 
+ order by R desc) E WHERE E.R >=#{a} AND E.R <=#{b}
+	 ]]>
+	</select>
+
+</mapper>

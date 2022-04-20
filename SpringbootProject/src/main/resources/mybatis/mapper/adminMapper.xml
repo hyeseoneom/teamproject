@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="springboot.project.dao.AdminDao">
+
+	<select id="count" resultType="int">
+		select count(*) from Member
+	</select>
+
+	<select id="memberAll" parameterType="springboot.project.dto.AdminDto" resultType="springboot.project.dto.AdminDto">
+		<![CDATA[    
+		select *	
+		from (select memberid, memberpw, name, phone, address, gender,birthday,email,pet,rownum r 
+		from (select * from Member order by name asc) order by name asc)
+		where r >=#{start} AND r <=#{end}]]> 
+	</select>
+	
+	<select  id="membersearch" parameterType="map" resultType="springboot.project.dto.AdminDto">
+		select * from
+		(select memberid, memberpw,name, phone, address, gender,birthday,email,pet,rownum r
+		from (select * from Member order by name asc) 
+		<where>
+			<choose>
+				<when test="msearchn == 0"> memberid like '%'||#{msearch}||'%'</when>
+				<when test="msearchn == 1"> name like '%'||#{msearch}||'%' </when>
+				<when test="msearchn == 2"> phone like '%'||#{msearch}||'%' </when>
+			</choose>
+		</where> 
+		order by name asc )
+		 where r >= #{start} AND r &lt;= #{end}
+ 		
+</select> 
+
+<select id="countSearch" resultType="int" parameterType="map">
+		select count(*) from Member
+		<where>
+			<choose>   
+				<when test="searchn == 0">memberid like '%||#{search}}||'%'</when>
+				<when test="searchn == 1">name like '%'||#{search}||'%'</when>
+				<when test="searchn == 2">phone like '%'||#{search}||'%'</when>
+			</choose>
+		</where>
+	</select>
+
+<update id="updatemember" parameterType="springboot.project.dto.AdminDto">
+	update Member set memberpw=#{memberpw} ,name=#{name}, phone=#{phone},address=#{address},gender=#{gender},email=#{email},pet=#{pet} where memberid=#{memberid}
+	</update>
+	
+	<select id="updatemem" resultType="springboot.project.dto.AdminDto" parameterType="string">
+		select * from Member where memberid=#{memberid}
+	</select>
+	
+	<delete id="deletemember" parameterType="string">
+		delete from Member where memberid=#{memberid}
+	</delete>
+
+<!-- 그래프 -->  
+<select id="countgender" resultType="springboot.project.dto.Chartdto">
+	select count(*) as count ,gender from Member group by gender
+</select>
+
+<select id="countAll" resultType="int">
+	select count(*) as count from Member
+</select>
+
+<!-- 음식점 -->
+	<insert id="insertStore" parameterType="springboot.project.dto.StoreDto">
+		insert into Foodstore values(FOODSTORE_SEQ.nextval,#{storename},#{storeaddress},#{storephone},#{storecontent},#{storeprice},#{storefilename},#{storefilepath},#{storefilesize},#{storecomm},sysdate)
+	</insert>
+	
+	<select id="selectStore" resultType="springboot.project.dto.StoreDto" parameterType="int">
+		select * from Foodstore where storeid=#{storeid}
+	</select>
+	
+	<update id="updateStore" parameterType="springboot.project.dto.StoreDto">
+		update Foodstore set storename=#{storename},storeaddress=#{storeaddress},storephone=#{storephone},storecontent=#{storecontent},storeprice=#{storeprice},storefilename=#{storefilename},storefilepath=#{storefilepath},storefilesize=#{storefilesize},storecomm=#{storecomm} where storeid=#{storeid}
+	</update>
+	
+	<!--수정-->
+	<select id="storelist" resultType="springboot.project.dto.StoreDto" parameterType="int">
+		   select * from Foodstore where storeid=#{storeid}
+	</select>
+	
+	<!--리스트전체 -->
+	<select id="storeAll" parameterType="map" resultType="springboot.project.dto.StoreDto">
+		<![CDATA[
+		select storeid,storename,storeaddress,storephone from
+		(select storeid, storename, storeaddress, storephone, storecontent, storeprice, storefilename, storefilepath, storefilesize, storecomm, foodregdate, rownum r
+		from (select * from Foodstore order by foodregdate desc)
+		order by storeid desc)where r >= #{start} AND r <= #{end}
+ 		]]>
+	</select>
+	
+
+	<delete id="deletestore" parameterType="int">
+		delete from Foodstore where storeid=#{storeid}
+	</delete>
+	
+	<!--가게페이지  -->
+	<select id="countstore" resultType="int">
+		select count(*) from Foodstore
+	</select>
+	
+	<select  id="storesearch" parameterType="map" resultType="springboot.project.dto.StoreDto">
+		select * from
+		(select storeid,storename,storeaddress,storephone,rownum r
+		from (select * from Foodstore order by storename desc) 
+		<where>
+			<choose>
+			<when test="ssearchn == 0"> storename like '%'||#{ssearch}||'%'</when>
+				<when test="ssearchn == 1"> storeaddress like '%'||#{ssearch}||'%' </when>
+				<when test="ssearchn == 2"> storephone like '%'||#{ssearch}||'%' </when>
+			</choose>
+		</where> 
+		order by storename asc )
+		 where r >= #{start} AND r &lt;= #{end}
+ 		
+</select> 
+
+<select id="storecountsearch" resultType="int" parameterType="map">
+		select count(*) from Foodstore
+		<where>
+			<choose>   
+				<when test="searchn == 0">storename like '%||#{search}}||'%'</when>
+				 <when test="searchn == 1">storeaddress like '%'||#{search}||'%'</when>
+				<when test="searchn == 2">storephone like '%'||#{search}||'%'</when> 
+			</choose>
+		</where>
+	</select>
+
+</mapper>

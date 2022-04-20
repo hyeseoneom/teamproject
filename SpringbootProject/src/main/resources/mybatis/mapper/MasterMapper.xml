@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="springboot.project.dao.MasterDao">
+
+	<insert id="masteregister"
+		parameterType="springboot.project.dto.MasterDto">
+		Insert into Master values(#{masterid},#{masterpw},#{mastername}, #{masterbirth},#{masteremail})
+	</insert>
+
+	<select id="idcheck" resultType="String" parameterType="String">
+		select
+		masterid from Master where masterid = #{masterid}
+	</select>
+	
+	<select id="masterlogin" parameterType="springboot.project.dto.MasterDto"
+		resultType="springboot.project.dto.MasterDto">
+		select*from Master where masterid =#{masterid} and masterpw=#{masterpw}
+	</select>
+	<!-- 
+	<select id="boardList" parameterType="map"
+		resultType="springboot.project.dto.CSBoardDto">
+		<![CDATA[
+		select * from
+		(select csno, memberid, cstitle, cscontent, csregdate, rownum r
+		from (select * from CSBoard order by csregdate desc)
+		order by csregdate desc)where r >= #{start} AND r <= #{end}
+ 		]]>
+ 		
+	</select>
+	<select id="count" resultType="int">
+		select count(*) from CSBoard
+	</select>
+ -->
+</mapper>

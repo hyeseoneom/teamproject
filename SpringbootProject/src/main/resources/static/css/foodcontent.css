@@ -1,0 +1,378 @@
+.u-section-1 .u-sheet-1 {
+  min-height: 637px;
+}
+
+.u-section-1 .u-image-1 {
+  width: 500px;
+  height: 300px;
+  margin-left: 3%;
+  margin-top: 5%;
+}
+
+.u-section-1 .u-image-1 .first{
+  width: 350px;
+  height: 350px;
+	margin-left: 15%;
+
+}
+.u-section-1 .u-container-layout-1 {
+  padding: 23px 0;
+}
+
+.u-section-1 .u-group-2 {
+  width: 562px;
+  min-height: 314px;
+  height: auto;
+  margin-top : -29%;
+  margin-left : 50%;
+}
+
+.u-section-1 .u-text-1 {
+  font-size: 1.3rem;
+  margin: 0 53px 0 0;
+}
+
+.u-section-1 .u-text-2 {
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 30px 0 0;
+}
+
+.u-section-1 .u-text-3 {
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 30px 21px 0 0;
+}
+
+.u-section-1 .u-text-4 {
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 30px 6px 0 0;
+}
+
+.u-section-1 .u-btn-1 {
+  border-style: solid;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0px;
+  padding: 10px 19px;
+  margin-left: 72%;
+  margin-top:-3%;
+}
+
+@media (max-width: 1199px) {
+  .u-section-1 .u-group-2 {
+    height: auto;
+  }
+
+  .u-section-1 .u-text-1 {
+    margin-right: 52px;
+  }
+
+  .u-section-1 .u-text-3 {
+    margin-right: 486px;
+  }
+
+  .u-section-1 .u-text-4 {
+    margin-right: 493px;
+  }
+
+  .u-section-1 .u-btn-1 {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .u-section-1 .u-group-2 {
+    width: 540px;
+    margin-right: 0;
+  }
+
+  .u-section-1 .u-text-1 {
+    margin-right: 30px;
+    margin-left: 20px;
+  }
+
+  .u-section-1 .u-text-3 {
+    margin-right: 464px;
+  }
+
+  .u-section-1 .u-text-4 {
+    margin-right: 471px;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-1 .u-image-1 {
+    width: 340px;
+    margin-left: 0;
+  }
+
+  .u-section-1 .u-group-2 {
+    width: 340px;
+  }
+
+  .u-section-1 .u-text-1 {
+    margin-right: 0;
+  }
+
+  .u-section-1 .u-text-3 {
+    margin-right: 264px;
+  }
+
+  .u-section-1 .u-text-4 {
+    margin-right: 271px;
+  }
+}.u-section-2 .u-sheet-1 {
+  min-height: 90px;
+}
+
+.u-section-2 .u-group-1 {
+  width: 819px;
+  min-height: 90px;
+  margin: 34px auto;
+}
+
+.u-section-2 .u-text-1 {
+  text-transform: uppercase;
+  margin: 0 auto;
+}
+
+.u-section-2 .u-text-2 {
+  line-height: 1.8;
+  margin: 20px 0 0;
+}
+
+@media (max-width: 991px) {
+  .u-section-2 .u-group-1 {
+    width: 720px;
+  }
+}
+
+@media (max-width: 767px) {
+  .u-section-2 .u-sheet-1 {
+    min-height: 330px;
+  }
+
+  .u-section-2 .u-group-1 {
+    width: 540px;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-2 .u-sheet-1 {
+    min-height: 442px;
+  }
+
+  .u-section-2 .u-group-1 {
+    width: 340px;
+  }
+}.u-section-3 .u-sheet-1 {
+  min-height: 70px;
+}
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button
+	{
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+.comment-box {
+	padding: 5px
+}
+
+.comment-area textarea {
+	border: 1px solid black;
+	width: 60%;
+	margin-left:20%;
+	font-family: 'Gamja Flower', cursive;
+}
+
+.form-control:focus {
+	color: #495057;
+	background-color: #fff;
+	border-color: #ffffff;
+	outline: 0;
+	box-shadow: 0 0 0 1px rgb(255, 0, 0) !important;
+	
+}
+
+.send {
+	color: white;
+	background-color: black;
+	border-color: black;
+	margin-left:75.5%
+	
+
+}
+
+.send:hover {
+	color: black;
+	background-color:white;
+	border-color: black;
+}
+
+.rating {
+	display: inline-flex;
+	margin-top: -2%;
+	margin-left: 20%;
+	flex-direction: row-reverse
+}
+
+.rating>input {
+	display: none
+}
+
+.rating>label {
+	position: relative;
+	width: 28px;
+	font-size: 35px;
+	color: #ff0000;
+	cursor: pointer
+}
+
+.rating>label::before {
+	content: "\2605";
+	position: absolute;
+	opacity: 0
+}
+
+.rating>label:hover:before, .rating>label:hover ~label:before {
+	opacity: 1 !important
+}
+
+.rating>input:checked ~label:before {
+	opacity: 1
+}
+
+.rating:hover>input:checked ~label:before {
+	opacity: 0.4
+}
+/*�뙎湲� 紐⑸줉*/
+body {
+	font-family: "Lato";
+}
+
+.comments-section {
+	margin: 1% auto 2% auto;
+	width: 50%;
+}
+
+
+.comments-section .comments {
+	color: black;
+}
+
+
+.comments-section .comment {
+	background: #F9FBFC;
+	padding: 20px;
+	font-size: 15px;
+	margin-bottom: 10px;
+}
+
+.comments-section .comment blockquote {
+	color: #eee;
+	padding: 1em;
+	border-left: 2px solid #76daff;
+	background: rgba(0, 0, 0, 0.05);
+}
+
+.comments-section .comment code {
+	font-family: Menlo, Monaco, monospace;
+	background: rgba(0, 0, 0, 0.2);
+	padding: 2px 5px;
+	margin: 0 2px;
+	border-radius: 2px;
+}
+
+.comments-section .comment .box {
+	background: #1d1f20;
+	padding: 20px;
+}
+
+.comments-section .comment .box pre {
+	overflow: auto;
+	margin: 0;
+}
+
+.comments-section .comment .box pre code {
+	background: transparent;
+}
+
+.comments-section .comment .box+.box {
+	padding-top: 0px;
+}
+
+.comments-section .comment a {
+	color: #76daff;
+	text-decoration: none;
+}
+
+.comments-section .comment .comment-user {
+	border-bottom: 1px solid #555;
+	padding: 10px 45px 20px;
+	display: flex;
+	align-items: center;
+}
+
+.comments-section .comment .avatar img {
+	width: 35px;
+	height: 20px;
+	border-radius: 50%;
+}
+.comment-user{
+	height : 10px;
+}
+
+.comments-section .comment .comment-user .username {
+	color: #76daff;
+}
+
+.comments-section .comment .comment-user .user-details {
+	color: #666;
+	margin-left:-2%;
+}
+
+.comments-section .comment .comment-user .user-details span:last-child {
+	color: #999;
+	font-size: 80%;
+}
+
+.comments-section .comment #comment-text {
+	padding: 10px 45px 20px;
+}
+/* comment踰꾪듉 */
+.updateComm{
+	float :right;
+	margin-right :1%;
+	border : solid grey 0.5px;
+	background-color : white;
+	height : 30px;
+	border-radius:10px;
+}
+
+.updateComm:hover{
+	border : solid red 0.5px;
+	background-color : white;
+	color:red;
+}
+
+.deleteComm{
+	float :right;
+	margin-right :1%;
+	border : solid grey 0.5px;
+	background-color : white;
+	height : 30px;
+	border-radius:10px;
+}
+.deleteComm:hover{
+	border : solid red 0.5px;
+	background-color : white;
+	color:red;
+}
+
+/* �뙎湲��뿉蹂꾩젏 �굹�삤�뒗嫄� */
+#scorecomment {
+margin-left: 3%;
+color: #FCDE00;
+}

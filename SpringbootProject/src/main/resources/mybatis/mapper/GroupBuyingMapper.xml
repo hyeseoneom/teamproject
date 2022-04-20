@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="springboot.project.dao.GroupBuyingDao">
+	<select id="gbList" parameterType="map" resultType="springboot.project.dto.GroupBuyingDto">
+	<![CDATA[
+		select * from (select grno, grtitle, grproduct, grcontent, memberid, grregdate, grphone, grcno, grdate, grstate,grprice,banknum,accountnum,rownum r from (select * from groupbuying order by grregdate desc) order by grregdate desc) where r >= #{start} AND r <= #{end}
+	]]>
+	</select>
+	
+	<select id="gbcount" resultType="int">
+		select count(*) from groupbuying
+	</select>
+	
+	<select id="gbdata" parameterType="int" resultType="springboot.project.dto.GBFileDto">
+		select * from gbfile where grno = #{grno}
+	</select>
+	
+	<insert id="uploadimg" parameterType="springboot.project.dto.GBFileDto">
+		insert into gbfile values(GBfile_seq.nextval, groupbuying_seq.currval, #{gimgoriname}, #{gimgpath}, #{gimgsize})
+	</insert>
+	
+	<insert id="groupBuyingWrite" parameterType="springboot.project.dto.GroupBuyingDto">
+		insert into groupbuying values(groupbuying_seq.nextval, #{grtitle}, #{grproduct}, #{grcontent}, #{memberid}, sysdate, #{grphone}, 0, #{grdate}, 0, #{grprice}, #{banknum}, #{accountnum})
+	</insert>
+	
+	<select id="groupdetail" parameterType="int" resultType="springboot.project.dto.GroupBuyingDto">
+		select * from groupbuying where grno = #{grno}
+	</select>
+	
+	<update id="countingGroup" parameterType="int">
+		update groupbuying set grcno = grcno+1 where grno= #{grno}
+	</update>
+	
+	<select id="groupdata" parameterType="int" resultType="springboot.project.dto.GBFileDto">
+		select * from gbfile where grno = #{grno}
+	</select>
+	
+	<select id="gcommlist" parameterType="int" resultType="springboot.project.dto.GBCommentDto">
+		select * from gbcomment where grno = #{grno} and regsno = 0 order by grdate asc
+	</select>
+	
+	<select id="recommlist" parameterType="int" resultType="springboot.project.dto.GBCommentDto">
+		select * from gbcomment where grno = #{grno} and regsno != 0 order by grdate asc
+	</select>
+	
+	<delete id="gcommdelete" parameterType="int">
+		delete from gbcomment where gsno = #{gsno}
+	</delete>
+	
+	<insert id="gcommWrite" parameterType="springboot.project.dto.GBCommentDto">
+		insert into gbcomment (grno, memberid, grcontent, gsno, grdate, regsno) values(#{grno}, #{memberid}, #{grcontent}, gbcomment_seq.nextval, sysdate, #{regsno})
+	</insert>
+	
+	<select id="commentOne" parameterType="int" resultType="springboot.project.dto.GBCommentDto">
+		select * from gbcomment where gsno = #{gsno}
+	</select>
+	
+	<update id="gcommupdate" parameterType="map">
+		update gbcomment set grcontent=#{grcontent} where gsno = #{gsno}
+	</update>
+	
+	<update id="quitGroupBuying" parameterType="int">
+		update groupbuying set grstate = 1 where grno = #{grno}
+	</update>
+	
+	<delete id="deleteGroupBuying" parameterType="int">
+		delete from groupbuying where grno = #{grno}
+	</delete>
+	
+	<delete id="deleteGBFile" parameterType="int">
+		delete from gbfile where grno = #{grno}
+	</delete>
+	
+	<insert id="updatefile" parameterType="springboot.project.dto.GBFileDto">
+		insert into gbfile values(gbfile_seq.nextval, #{grno}, #{gimgoriname}, #{gimgpath}, #{gimgsize})
+	</insert>
+	
+	<update id="updateGroupBuying" parameterType="springboot.project.dto.GroupBuyingDto">
+		update groupbuying set grtitle=#{grtitle} , grcontent=#{grcontent},  grphone=#{grphone}, grdate=#{grdate}, grproduct=#{grproduct}, grprice=#{grprice}, banknum=#{banknum},accountnum=#{accountnum} where grno = #{grno}
+	</update>
+	
+	<select id="countSearch" resultType="int" parameterType="map">
+			select count(*) from groupbuying
+			<where>
+				<choose>
+					<when test="searchn == 0"> grtitle  like '%'||#{search}||'%' </when>
+					<when test="searchn == 1"> grcontent  like '%'||#{search}||'%'</when>
+					<when test="searchn == 2"> memberid  like '%'||#{search}||'%' </when>
+					<when test="searchn == 3"> grproduct  like '%'||#{search}||'%' </when>
+				</choose>
+			</where> 
+	</select>
+	
+	<select id="gbSearch" parameterType="map" resultType="springboot.project.dto.GroupBuyingDto">
+			select * from (select grno, grtitle, grproduct, grcontent, memberid, grregdate, grphone, grcno, grdate, grstate,grprice,banknum,accountnum, rownum r from (select * from groupbuying order by grregdate desc) 
+		<where>
+			<choose>
+					<when test="searchn == 0"> grtitle  like '%'||#{search}||'%' </when>
+					<when test="searchn == 1"> grcontent  like '%'||#{search}||'%'</when>
+					<when test="searchn == 2"> memberid  like '%'||#{search}||'%' </when>
+					<when test="searchn == 3"> grproduct  like '%'||#{search}||'%' </when>
+			</choose>
+		</where> 
+		order by grregdate desc) where r &gt;= #{start} AND r &lt;= #{end}
+	</select>
+	
+	<insert id="order" parameterType="springboot.project.dto.OrderDto">
+		insert into grouporder values(grouporder_seq.nextval, #{grno}, #{memberid}, #{product}, #{price}, #{tel}, #{address}, #{extraddress}, #{postcode}, sysdate)
+	</insert>
+	
+	<select id="orderList" parameterType="map" resultType="springboot.project.dto.GroupBuyingDto">
+	<![CDATA[
+		select * from (select grno, grtitle, grproduct, grcontent, memberid, grregdate, grphone, grcno, grdate, grstate,grprice,banknum,accountnum,rownum r from (select * from groupbuying where memberid = #{memberid} order by grregdate desc) order by grregdate desc) where r >= #{start} AND r <= #{end}
+	]]>
+	</select>
+	
+	<select id="ordercount" parameterType="String" resultType="int">
+		select count(*) from groupbuying where memberid = #{memberid}
+	</select>
+	
+	
+	<select id="orderdetail" parameterType="map" resultType="springboot.project.dto.OrderDto">
+	<![CDATA[
+		select * from (select grno, orderno, memberid, product, price, tel, address, extraddress, postcode, orderdate, rownum r from (select * from grouporder where grno = #{grno} order by orderdate desc) order by orderdate desc) where r >= #{start} AND r <= #{end}
+	]]>
+	</select>
+	
+	<select id="orderdetailcount" parameterType="int" resultType="int">
+		select count(*) from grouporder where grno = #{grno}
+	</select>
+	
+	<select id="myorders" parameterType="map" resultType="springboot.project.dto.OrderDto">
+	<![CDATA[
+		select * from (select grno, orderno, memberid, product, price, tel, address, extraddress, postcode, orderdate, rownum r from (select * from grouporder where memberid = #{memberid} order by orderdate desc) order by orderdate desc) where r >= #{start} AND r <= #{end}
+	]]>
+	</select>
+	
+	<select id="myorderscount" parameterType="String" resultType="int">
+		select count(*) from grouporder where memberid = #{memberid}
+	</select>
+	
+	<select id="orderCountSearch" resultType="int" parameterType="map">
+			select count(*) from grouporder  
+			<where>
+				grno = #{grno} and
+				<choose>
+					<when test="searchn == 0"> memberid  like '%'||#{search}||'%' </when>
+					<when test="searchn == 1"> address  like '%'||#{search}||'%'</when>
+					<when test="searchn == 2"> orderdate  like '%'||#{search}||'%' </when>
+				</choose>
+			</where> 
+	</select>
+	
+	<select id="orderSearch" parameterType="map" resultType="springboot.project.dto.OrderDto">
+			select * from (select grno, orderno, memberid, product, price, tel, address, extraddress, postcode, orderdate, rownum r from (select * from grouporder where grno = #{grno} order by orderdate desc) 
+		<where>
+			<choose>
+					<when test="searchn == 0"> memberid  like '%'||#{search}||'%' </when>
+					<when test="searchn == 1"> address  like '%'||#{search}||'%'</when>
+					<when test="searchn == 2"> orderdate  like '%'||#{search}||'%' </when>
+			</choose>
+		</where> 
+		order by orderdate desc) where r &gt;= #{start} AND r &lt;= #{end}
+	</select>
+</mapper>

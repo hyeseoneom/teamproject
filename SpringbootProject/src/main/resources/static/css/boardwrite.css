@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+table {
+	width: 750px;
+	margin-left: auto;
+	margin-right: auto;
+	height: 700px;
+	margin-top : 1%;
+	margin-bottom : 3%;
+}
+
+.noborder {
+	border: 0 solid black;
+}
+
+
+textarea {
+	width: 100%;
+	height: 90%;
+}
+
+td, th {
+	border: 1px solid #dbdbdb;
+	padding: 5px 20px;
+	font-size: 12px;
+}
+
+.title {
+	width: 80%;
+}
+
+.pp {
+	width: 80%;
+}
+
+table {
+	border-collapse: collapse;
+}
